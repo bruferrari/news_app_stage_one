@@ -29,6 +29,7 @@ public class ArticlesTaskLoader extends AsyncTaskLoader<List<Article>> {
     private static final String CATEGORY_PROPERTY = "sectionName";
     private static final String DATE_PROPERTY = "webPublicationDate";
     private static final String URL_PROPERTY = "webUrl";
+    private static final String CONTRIBUTOR_PROPERTY = "contributor";
 
     public ArticlesTaskLoader(Context context, List<Article> articles) {
         super(context);
@@ -44,7 +45,8 @@ public class ArticlesTaskLoader extends AsyncTaskLoader<List<Article>> {
     public List<Article> loadInBackground() {
         HttpRequestHandler httpHandler = new HttpRequestHandler();
         String requestUrl = CommonUtils.BASE_URL
-                + CommonUtils.SEARCH_FROM_DATE
+                + CommonUtils.SEARCH + "\"brazil\""
+                + CommonUtils.FROM_DATE
                 + CommonUtils.nowInString()
                 + CommonUtils.API_KEY;
         Log.d(LOG_TAG, "generating request: " + requestUrl);
@@ -61,8 +63,19 @@ public class ArticlesTaskLoader extends AsyncTaskLoader<List<Article>> {
                     Article article = new Article();
                     article.setTitle(resultsObject.getJSONObject(i).getString(TITLE_PROPERTY));
                     article.setCategory(resultsObject.getJSONObject(i).getString(CATEGORY_PROPERTY));
-                    article.setDate(resultsObject.getJSONObject(i).getString(DATE_PROPERTY));
+
+                    String dateInString = resultsObject.getJSONObject(i).getString(DATE_PROPERTY);
+
+                    article.setDate(CommonUtils.parseDate(dateInString));
                     article.setUrl(resultsObject.getJSONObject(i).getString(URL_PROPERTY));
+                    String contributor = "";
+                    try {
+                        resultsObject.getJSONObject(i).getString(CONTRIBUTOR_PROPERTY);
+                    } catch (JSONException e) {
+                        Log.d(LOG_TAG, "no author found");
+                    }
+
+                    article.setAuthor(contributor);
 
                     mArticles.add(article);
                 }

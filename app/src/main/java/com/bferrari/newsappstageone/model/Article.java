@@ -10,14 +10,9 @@ public class Article {
     private String category;
     private String date;
     private String url;
+    private String author;
 
     public Article() { }
-
-    public Article(String title, String category, String date) {
-        this.title = title;
-        this.category = category;
-        this.date = date;
-    }
 
     public String getTitle() {
         return title;
@@ -49,5 +44,13 @@ public class Article {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

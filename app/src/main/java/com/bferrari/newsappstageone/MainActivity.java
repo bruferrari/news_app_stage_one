@@ -5,26 +5,34 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.bferrari.newsappstageone.model.Article;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Article>> {
+public class MainActivity extends AppCompatActivity
+        implements LoaderManager.LoaderCallbacks<List<Article>>, SwipeRefreshLayout.OnRefreshListener {
 
     private RecyclerView mRecyclerView;
     private ProgressBar mProgressBar;
+    private TextView mGeneralMessage;
+    private SwipeRefreshLayout mRefreshLayout;
 
     private ArticleAdapter mAdapter = new ArticleAdapter();
     private List<Article> mData = new ArrayList<>();
+
+    private static final int LOADER_ID = 0;
+    private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,18 +52,30 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         bindUI();
         setupRecyclerView();
+        setupRefreshLayout();
 
-        getSupportLoaderManager().initLoader(0, null, this);
+        if (CommonUtils.isNetworkAvailable(this)) {
+            getSupportLoaderManager().initLoader(LOADER_ID, null, this);
+        } else {
+            mGeneralMessage.setText(R.string.err_internet_connection);
+            displayGeneralMessage();
+        }
     }
 
     private void bindUI() {
         mRecyclerView = findViewById(R.id.recycler_view);
         mProgressBar = findViewById(R.id.progress_bar);
+        mGeneralMessage = findViewById(R.id.general_msg);
+        mRefreshLayout = findViewById(R.id.swipe_refresh);
     }
 
     private void setupRecyclerView() {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    private void setupRefreshLayout() {
+        mRefreshLayout.setOnRefreshListener(this);
     }
 
     @Override
@@ -71,12 +91,26 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         mAdapter.setData(mData);
 
         if (mData.isEmpty()) {
-            Toast.makeText(this, "Not found", Toast.LENGTH_LONG).show();
+            mGeneralMessage.setText(R.string.err_news_not_available);
+            displayGeneralMessage();
         }
+
+        Log.d(LOG_TAG, "Load finished!");
+        mRefreshLayout.setRefreshing(false);
     }
 
     @Override
     public void onLoaderReset(android.support.v4.content.Loader<List<Article>> loader) {
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    private void displayGeneralMessage() {
+        mGeneralMessage.setVisibility(View.VISIBLE);
+        mProgressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onRefresh() {
+        getSupportLoaderManager().restartLoader(LOADER_ID, null, this);
     }
 }

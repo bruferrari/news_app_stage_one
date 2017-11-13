@@ -28,12 +28,14 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
         private TextView tvTitle;
         private TextView tvCategory;
         private TextView tvDate;
+        private TextView tvAuthor;
 
         public ViewHolder(View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.article_title);
             tvCategory = itemView.findViewById(R.id.article_category);
             tvDate = itemView.findViewById(R.id.article_date);
+            tvAuthor = itemView.findViewById(R.id.article_contributor);
 
             itemView.setOnClickListener(this);
         }
@@ -63,7 +65,13 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
 
         holder.tvTitle.setText(article.getTitle());
         holder.tvCategory.setText(article.getCategory());
-        holder.tvDate.setText(article.getDate().toString());
+        holder.tvDate.setText(article.getDate());
+
+        if (!article.getAuthor().isEmpty()) {
+            holder.tvAuthor.setText(article.getAuthor());
+        } else {
+            holder.tvAuthor.setText(R.string.msg_no_author_available);
+        }
     }
 
     @Override

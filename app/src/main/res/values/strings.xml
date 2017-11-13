@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">News App Stage One</string>
     <string name="action_settings">Settings</string>
+    <string name="err_internet_connection">There is no internet connection available, please turn on your internet connection in order to fetch news.</string>
+    <string name="err_news_not_available">It was not possible to fetch news with this theme, please choose another theme and try again.</string>
+    <string name="msg_no_author_available">No author information</string>
 </resources>
