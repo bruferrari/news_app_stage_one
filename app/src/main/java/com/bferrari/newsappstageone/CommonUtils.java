@@ -23,14 +23,22 @@ public class CommonUtils {
     private static final String LOG_TAG = CommonUtils.class.getSimpleName();
 
     public static final String BASE_URL = "http://content.guardianapis.com/";
-    public static final String SEARCH = "search?q=";
+    public static final String SEARCH = "search?";
+    public static final String QUERY = "&q=";
+    public static final String SECTION = "section=";
     public static final String FROM_DATE = "&from-date=";
+    public static final String TO_DATE = "&to-date=";
     public static final String API_KEY = "&api-key=test";
+
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     public static String nowInString() {
         Date now = Calendar.getInstance().getTime();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return sdf.format(now);
+    }
+
+    public static String getFormattedDate(Date date) {
+        return sdf.format(date);
     }
 
     public static boolean isNetworkAvailable(Context context) {

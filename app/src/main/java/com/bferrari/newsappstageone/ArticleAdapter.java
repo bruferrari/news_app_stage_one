@@ -80,7 +80,8 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
     }
 
     public void setData(List<Article> data) {
-        this.mArticles = data;
+        mArticles.clear();
+        mArticles.addAll(data);
         notifyDataSetChanged();
     }
 }
