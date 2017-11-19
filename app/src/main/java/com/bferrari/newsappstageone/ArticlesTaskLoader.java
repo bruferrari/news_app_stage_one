@@ -53,7 +53,7 @@ public class ArticlesTaskLoader extends AsyncTaskLoader<List<Article>> {
     public List<Article> loadInBackground() {
         HttpRequestHandler httpHandler = new HttpRequestHandler();
 
-        mSharedPrefs = ctx.getSharedPreferences("preferences", Context.MODE_PRIVATE);
+        mSharedPrefs = ctx.getSharedPreferences(ctx.getString(R.string.preferences), Context.MODE_PRIVATE);
 
         mCountry = mSharedPrefs.getString(String.valueOf(PreferencesKeys.COUNTRY), PreferencesKeys.COUNTRY.getValue());
         mCategory = mSharedPrefs.getString(String.valueOf(PreferencesKeys.CATEGORY), PreferencesKeys.CATEGORY.getValue());

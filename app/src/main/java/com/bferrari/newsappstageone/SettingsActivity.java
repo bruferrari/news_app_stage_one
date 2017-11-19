@@ -31,7 +31,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         bindUi();
 
-        mSharedPreferences = getSharedPreferences("preferences", Context.MODE_PRIVATE);
+        mSharedPreferences = getSharedPreferences(getString(R.string.preferences), Context.MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
 
         mSaveBtn.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +54,7 @@ public class SettingsActivity extends AppCompatActivity {
                 }
 
                 mEditor.apply();
+                SettingsActivity.this.finish();
             }
         });
     }

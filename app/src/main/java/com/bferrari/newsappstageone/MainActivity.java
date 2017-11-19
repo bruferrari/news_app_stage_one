@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Not implemented yet", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, R.string.not_implemented, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });

@@ -12,7 +12,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="News from"
+        android:text="@string/news_from"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +25,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="200dp"
-        android:text="Category"
+        android:text="@string/category"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,25 +49,25 @@
             android:id="@+id/radio_brazil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Brazil" />
+            android:text="@string/brazil" />
 
         <RadioButton
             android:id="@+id/radio_united_states"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="United States of America" />
+            android:text="@string/united_states_of_america" />
 
         <RadioButton
             android:id="@+id/radio_germany"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Germany" />
+            android:text="@string/germany" />
 
         <RadioButton
             android:id="@+id/radio_italy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Italy" />
+            android:text="@string/italy" />
     </RadioGroup>
 
     <RadioGroup
@@ -87,19 +87,19 @@
             android:id="@+id/radio_technology"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Technology" />
+            android:text="@string/technology" />
 
         <RadioButton
             android:id="@+id/radio_cities"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cities" />
+            android:text="@string/cities" />
 
         <RadioButton
             android:id="@+id/radio_business"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Business" />
+            android:text="@string/business" />
     </RadioGroup>
 
     <Button
@@ -109,7 +109,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:text="Save changes"
+        android:text="@string/save_changes_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

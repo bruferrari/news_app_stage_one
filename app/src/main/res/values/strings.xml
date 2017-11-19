@@ -4,4 +4,16 @@
     <string name="err_internet_connection">There is no internet connection available, please turn on your internet connection in order to fetch news.</string>
     <string name="err_news_not_available">It was not possible to fetch news with this theme, please choose another theme and try again.</string>
     <string name="msg_no_author_available">No author information</string>
+    <string name="cities">Cities</string>
+    <string name="business">Business</string>
+    <string name="technology">Technology</string>
+    <string name="save_changes_btn">Save changes</string>
+    <string name="brazil">Brazil</string>
+    <string name="united_states_of_america">USA</string>
+    <string name="germany">Germany</string>
+    <string name="italy">Italy</string>
+    <string name="news_from">News from</string>
+    <string name="category">Category</string>
+    <string name="preferences">preferences</string>
+    <string name="not_implemented">Not implemented yet</string>
 </resources>
